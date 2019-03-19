@@ -12,7 +12,7 @@ require 'mina/git'
 set :application_name, 'blog'
 set :domain, 'xiaotong.online'
 set :deploy_to, '/var/www/xiaotong.online'
-set :repository, ''
+set :repository, 'git@github.com:user-tony/blog.git'
 set :branch, 'master'
 
 # Optional settings:
