@@ -1,6 +1,6 @@
 require 'mina/rails'
 require 'mina/git'
-# require 'mina/rbenv'  # for rbenv support. (https://rbenv.org)
+require 'mina/rbenv'  # for rbenv support. (https://rbenv.org)
 # require 'mina/rvm'    # for rvm support. (https://rvm.io)
 
 # Basic settings:
@@ -9,11 +9,14 @@ require 'mina/git'
 #   repository   - Git repo to clone from. (needed by mina/git)
 #   branch       - Branch name to deploy. (needed by mina/git)
 
-set :application_name, 'blog'
-set :domain, 'xiaotong.online'
+set :application_name, 'xiaotong'
+set :domain, '192.144.186.125'
 set :deploy_to, '/var/www/xiaotong.online'
 set :repository, 'git@github.com:user-tony/blog.git'
 set :branch, 'master'
+
+
+set :user, ENV['BLOG_USER']
 
 # Optional settings:
 #   set :user, 'foobar'          # Username in the server to SSH to.
@@ -31,7 +34,7 @@ set :branch, 'master'
 task :remote_environment do
   # If you're using rbenv, use this to load the rbenv environment.
   # Be sure to commit your .ruby-version or .rbenv-version to your repository.
-  # invoke :'rbenv:load'
+  invoke :'rbenv:load'
 
   # For those using RVM, use this to load an RVM version@gemset.
   # invoke :'rvm:use', 'ruby-1.9.3-p125@default'
@@ -40,7 +43,7 @@ end
 # Put any custom commands you need to run at setup
 # All paths in `shared_dirs` and `shared_paths` will be created on their own.
 task :setup do
-  # command %{rbenv install 2.3.0 --skip-existing}
+  command %{rbenv install 2.5.3 --skip-existing}
 end
 
 desc "Deploys the current version to the server."
