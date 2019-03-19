@@ -1,0 +1,23 @@
+# default: &default
+default: &default
+  adapter: postgresql
+  pool: 25
+  encoding: unicode
+
+distant_default: &distant_default
+  <<: *default
+  host: <%= ENV['DATABASE_HOST'] || 'localhost' %>
+  username: <%= ENV['DATABASE_USER'] || 'postgres' %>
+  password: <%= ENV['DATABASE_PASSWORD'] || 'pineapple' %>
+
+development:
+  <<: *distant_default
+  database: blog_development
+
+test:
+  <<: *distant_default
+  database: blog-test
+
+production:
+  <<: *distant_default
+  database: <%= ENV['DATABASE_NAME'] || 'blog-production' %>
